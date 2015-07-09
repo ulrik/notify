@@ -6,7 +6,7 @@ A more light interface to using the LocalBroadcastManager
 
 Add this line to your application's Gemfile:
 
-    gem 'notify', :git => 'git@git.medware.dk:ulrik/notify.git'
+    gem 'notify', :git => 'git@git.medware.dk:android/notify.git'
 
 And then execute:
 

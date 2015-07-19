@@ -39,7 +39,7 @@ class MainActivity < Android::App::Activity
 
   def receive intent
     message = intent.getExtras.get 'message'
-    puts "We are in and have message: '#{message}'"
+    puts "Notification receive with message: '#{message}'"
   end
 
 end

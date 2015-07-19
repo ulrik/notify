@@ -24,13 +24,8 @@ class MainActivity < Android::App::Activity
   def onCreate(savedInstanceState)
     super
 
-    #Initialize once - ie. in a custom Application class 
+    #Initialize once before broadcasting notifications - ie. in a custom Application class 
     Notify.application_context = getApplicationContext()
-  
-    #Use to broadcast event
-    Notify.broadcast "event-name" do |intent|
-      intent.putExtra("message", "This is my message!")
-    end
   end
 
   def receive intent
@@ -43,6 +38,23 @@ end
 
 ```
 
+
+```ruby
+
+class OtherActivity < Android::App::Activity  
+
+  def onCreate(savedInstanceState)
+    super
+
+    Notify.broadcast "event-name" do |intent|
+      intent.putExtra("message", "This is my message!")
+    end
+  end
+
+end
+
+
+```
 
 
 

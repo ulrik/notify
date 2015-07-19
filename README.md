@@ -14,19 +14,28 @@ And then execute:
 
 ## Usage
 
+
+### Initialize context
+```ruby
+
+class MyApp < Android::App::Application
+
+  def onCreate
+    super
+
+    Notify.application_context = self
+  end
+end
+
+```
+
+### Receive notification
 ```ruby
 
 class MainActivity < Android::App::Activity  
   include NotifiedActivity
 
   notify "event-name", :receive
-
-  def onCreate(savedInstanceState)
-    super
-
-    #Initialize once before broadcasting notifications - ie. in a custom Application class 
-    Notify.application_context = getApplicationContext()
-  end
 
   def receive intent
     message = intent.getExtras.get 'message'
@@ -35,9 +44,9 @@ class MainActivity < Android::App::Activity
 
 end
 
-
 ```
 
+### Broadcast notification
 
 ```ruby
 
@@ -52,7 +61,6 @@ class OtherActivity < Android::App::Activity
   end
 
 end
-
 
 ```
 

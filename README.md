@@ -6,18 +6,17 @@ A more light interface to using the LocalBroadcastManager
 
 Add this line to your application's Gemfile:
 
-    gem 'notify', :git => 'git@git.medware.dk:android/notify.git'
+    gem 'notify', :git => 'git://github.com/ulrik/notify.git'
 
 And then execute:
 
     $ bundle
 
-
 ## Usage
 
 ```ruby
 
-class MainActivity < Android::App::Activity
+class MainActivity < Android::App::Activity  
   include NotifiedActivity
 
   notify "event-name", :receive
@@ -25,8 +24,10 @@ class MainActivity < Android::App::Activity
   def onCreate(savedInstanceState)
     super
 
+    #Initialize once - ie. in a custom Application class 
     Notify.application_context = getApplicationContext()
   
+    #Use to broadcast event
     Notify.broadcast "event-name" do |intent|
       intent.putExtra("message", "This is my message!")
     end

@@ -1,4 +1,4 @@
-module NotifiedActivity
+module NotifiedFragment
 
   def self.included(base)
     base.extend(ClassMethods)
@@ -14,15 +14,14 @@ module NotifiedActivity
     end
   end  
 
-  def onCreate(savedInstanceState)
+  def onStart
     super
-
     self.class.notifications.each do |n|
-      events << Notify.register(self, self, *n)
+      events << Notify.register(activity, self, *n)
     end
   end
 
-  def onDestroy
+  def onStop
     events.each do |e|
       Notify.unregister(e)
     end

@@ -1,8 +1,9 @@
 class NotifyBroadcastReceiver < Android::Content::BroadcastReceiver
 
-  def initialize(context, method)
+  def initialize(context, delegate, method)
     @method = method
     @context = context
+    @delegate = delegate
   end
 
   def context
@@ -10,6 +11,6 @@ class NotifyBroadcastReceiver < Android::Content::BroadcastReceiver
   end
 
   def onReceive(context, intent)
-    @context.send @method, intent
+    @delegate.send @method, intent
   end
 end

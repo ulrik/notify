@@ -4,9 +4,9 @@ class Notify
     @application_context = context
   end 
 
-  def self.register(context, event, method)
+  def self.register(context, delegate, event, method)
     filter = Android::Content::IntentFilter.new(event)
-    receiver = NotifyBroadcastReceiver.new(context, method)
+    receiver = NotifyBroadcastReceiver.new(context, delegate, method)
     manager(context).registerReceiver(receiver, filter)
     receiver
   end

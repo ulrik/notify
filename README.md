@@ -29,11 +29,28 @@ end
 
 ```
 
-### Receive notification
+### Receive notification in Activity
 ```ruby
 
 class MainActivity < Android::App::Activity  
   include NotifiedActivity
+
+  notify "event-name", :receive
+
+  def receive intent
+    message = intent.getExtras.get 'message'
+    puts "Notification receive with message: '#{message}'"
+  end
+
+end
+
+```
+
+### Receive notification in Fragment
+```ruby
+
+class MyFragment < Android::App::Fragment
+  include NotifiedFragment
 
   notify "event-name", :receive
 
